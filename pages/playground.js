@@ -63,13 +63,15 @@ const Playground = () => {
       "source_code": btoa(code),
       "stdin": btoa(customInput)
     });
+    
+    
 
     var config = {
       method: 'post',
-      url: 'https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*',
+      url: process.env.REACT_APP_RAPID_API_URL +'?base64_encoded=true&fields=*',
       headers: {
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com',
-        'X-RapidAPI-Key': '1a9ce17f80msh1b10f0b2ba1aadep13c266jsnc56dee1cf4ec',
+        'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_HOST,
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
         'Content-Type': 'application/json'
       },
       data: data
@@ -96,15 +98,16 @@ const Playground = () => {
       });
 
   };
+  
 
   const checkStatus = async (token) => {
 
     var config = {
       method: 'get',
-      url: 'https://judge0-ce.p.rapidapi.com/submissions/'+token+'?base64_encoded=true&fields=*',
+      url: process.env.REACT_APP_RAPID_API_URL +'/'+token+'?base64_encoded=true&fields=*',
       headers: {
-        'X-RapidAPI-Key': '1a9ce17f80msh1b10f0b2ba1aadep13c266jsnc56dee1cf4ec',
-        'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+        'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_HOST
       }
     };
 
